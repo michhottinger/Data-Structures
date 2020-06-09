@@ -70,7 +70,7 @@ class DoublyLinkedList:
     as the new tail of the list. Don't forget to handle 
     the old tail node's next pointer accordingly."""
     def add_to_tail(self, value):
-        new_node = Listnode(value, None, None)
+        new_node = ListNode(value, None, None)
         self.length += 1
         if not self.head and not self.tail:
             self.head = new_node
@@ -93,28 +93,19 @@ class DoublyLinkedList:
     def move_to_front(self, node):
         #check if the node is the head
         if node is self.head:
-            return node
+            return
         #store reference to the node we are going to move
-        value = node
-        if node is self.tail:
-            self.remove_from_tail()
-        else:
-            node.delete()
-            self.length -= 1
-        self.add_to_head(value)
+        value = node.value
+        self.add_to_head(node.value)
+        self.delete(node)
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List."""
     def move_to_end(self, node):
-        if node is tail:
-            return None
-        value = node.value
-        if node is self.head:
-            self.remove._from_head()
-        else:
-            node.delete()
-            self.length -= 1
-        self.add_to_tail(value)
+        if node is self.tail:
+            return
+        self.add_to_tail(node.value)
+        self.delete(node)
 
     """Removes a node from the list and handles cases where
     the node was the head or the tail"""
@@ -127,7 +118,7 @@ class DoublyLinkedList:
             self.tail = None
         #check if node is head of list
         #move the head reference
-        elif: self.head in node:
+        elif self.head is node:
             self.head = node.next
             node.delete()
         elif self.tail is node:
