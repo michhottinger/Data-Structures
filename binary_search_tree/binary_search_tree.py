@@ -1,7 +1,8 @@
 import sys
 sys.path.append('../queue')
 from crazy_queue import Queue
-
+sys.path.append('../stack')
+from crazy_stack import Stack
 """
 Binary search trees are a data structure that enforce an ordering over 
 the data they store. That ordering in turn makes it a lot more efficient 
@@ -106,7 +107,16 @@ class BSTNode:
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        stack = Stack()
+        stack.push(self)
+        while len(stack) > 0:
+            current_node = stack.pop()
+            print(current_node.value)
+            if current_node.right:
+                stack.push(current_node.right)
+            if current_node.left:
+                stack.push(current_node.left)
+            
 
     # Stretch Goals -------------------------
     # Note: Research may be required
